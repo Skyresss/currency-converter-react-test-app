@@ -6,21 +6,15 @@ import ExchangeRatePage from './components/ExchangeRatePage';
 import Header from './components/Header';
 
 const App: React.FC = () => {
-  const [currencyOptions, setCurrencyOptions] = useState<string[]>([
-    'USD',
-    'EUR',
-  ]);
+  const [currencyOptions, setCurrencyOptions] = useState<string[]>([]);
   const [currencyOptionsAndRates, setCurrencyOptionsAndRates] = useState<any[]>(
-    [
-      ['USD', 1.2],
-      ['EUR', 1],
-    ]
+    []
   );
   useEffect(() => {
     const test = async () => {
-      const go = await axios.get('http://api.exchangeratesapi.io/v1/latest', {
+      const go = await axios.get('https://api.exchangeratesapi.io/v1/latest', {
         params: {
-          access_key: '89205d0fbff149ecb3265084601733c6',
+          access_key: 'f55e4bbb2e9ab101148944e14d48baef',
           symbols:
             'SGD,MYR,EUR,USD,AUD,JPY,CNH,HKD,CAD,INR,DKK,GBP,RUB,NZD,MXN,IDR,TWD,THB,VND',
         },

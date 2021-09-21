@@ -10,8 +10,6 @@ import {
   Paper,
 } from '@mui/material';
 import { tableCellClasses } from '@mui/material/TableCell';
-import { useState } from 'react';
-import SelectInput from './SelectInput';
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     color: theme.palette.common.white,
@@ -25,21 +23,11 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd)': {
     backgroundColor: theme.palette.action.hover,
   },
-  // hide last border
   '&:last-child td, &:last-child th': {
     border: 0,
   },
 }));
 
-function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number
-) {
-  return { name, calories, fat, carbs, protein };
-}
 const styles = makeStyles({
   tableContainer: {
     width: '90% !important',
@@ -54,7 +42,6 @@ interface ExchangeRatePageProps {
   options: any[];
 }
 const ExchangeRatePage: React.FC<ExchangeRatePageProps> = ({ options }) => {
-  const [exchangeRateInput, setExchangeRateInput] = useState('EUR');
   const classes = styles();
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>

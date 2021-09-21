@@ -25,7 +25,6 @@ const App: React.FC = () => {
             'SGD,MYR,EUR,USD,AUD,JPY,CNH,HKD,CAD,INR,DKK,GBP,RUB,NZD,MXN,IDR,TWD,THB,VND',
         },
       });
-      console.log(Object.keys(go.data.rates));
       setCurrencyOptions(Object.keys(go.data.rates));
       setCurrencyOptionsAndRates(Object.entries(go.data.rates));
     };

@@ -61,7 +61,9 @@ const Converter: React.FC<ConverterProps> = ({ options }) => {
           }
         );
         setLoading(false);
-        setConvertedCurrency((response.data * Number(inputValue)).toString());
+        setConvertedCurrency(
+          (response.data * Number(debouncedValue)).toString()
+        );
       };
       convert();
     }

@@ -1,4 +1,4 @@
-import { Container, TextField, Typography } from '@mui/material';
+import { Container, TextField, Typography, Fade } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import SelectInput from './SelectInput';
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
@@ -40,10 +40,12 @@ const Converter: React.FC<ConverterProps> = ({ options }) => {
   const [inputValue, setInputValue] = useState('');
   const [convertedCurrency, setConvertedCurrency] = useState('');
   const [debouncedValue] = useDebounce(inputValue, 500);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (debouncedValue) {
       const convert = async () => {
+        setLoading(true);
         const response = await axios.get(
           `https://currency-exchange.p.rapidapi.com/exchange`,
           {
@@ -58,6 +60,7 @@ const Converter: React.FC<ConverterProps> = ({ options }) => {
             },
           }
         );
+        setLoading(false);
         setConvertedCurrency((response.data * Number(inputValue)).toString());
       };
       convert();
@@ -110,16 +113,20 @@ const Converter: React.FC<ConverterProps> = ({ options }) => {
           flexDirection: 'column',
         }}
       >
-        <Typography
-          align="left"
-          variant="h4"
-          style={{ color: 'rgb(92, 102, 123)' }}
-        >
-          {debouncedValue && `${inputValue} ${firstSelectInput}=`}
-        </Typography>
-        <Typography align="left" variant="h2">
-          {debouncedValue && `${convertedCurrency} ${secondSelectInput}`}
-        </Typography>
+        <Fade in={!loading}>
+          <Typography
+            align="left"
+            variant="h4"
+            style={{ color: 'rgb(92, 102, 123)' }}
+          >
+            {!loading && `${debouncedValue} ${firstSelectInput}=`}
+          </Typography>
+        </Fade>
+        <Fade in={!loading}>
+          <Typography align="left" variant="h2">
+            {!loading && `${convertedCurrency} ${secondSelectInput}`}
+          </Typography>
+        </Fade>
       </div>
     </Container>
   );

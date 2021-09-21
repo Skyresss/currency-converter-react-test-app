@@ -17,19 +17,19 @@ const App: React.FC = () => {
     ]
   );
   useEffect(() => {
-    // const test = async () => {
-    //   const go = await axios.get('http://api.exchangeratesapi.io/v1/latest', {
-    //     params: {
-    //       access_key: '89205d0fbff149ecb3265084601733c6',
-    //       symbols:
-    //         'SGD,MYR,EUR,USD,AUD,JPY,CNH,HKD,CAD,INR,DKK,GBP,RUB,NZD,MXN,IDR,TWD,THB,VND',
-    //     },
-    //   });
-    //   console.log(Object.keys(go.data.rates));
-    //   setCurrencyOptions(Object.keys(go.data.rates));
-    //   setCurrencyOptionsAndRates(Object.entries(go.data.rates));
-    // };
-    // test();
+    const test = async () => {
+      const go = await axios.get('http://api.exchangeratesapi.io/v1/latest', {
+        params: {
+          access_key: '89205d0fbff149ecb3265084601733c6',
+          symbols:
+            'SGD,MYR,EUR,USD,AUD,JPY,CNH,HKD,CAD,INR,DKK,GBP,RUB,NZD,MXN,IDR,TWD,THB,VND',
+        },
+      });
+      console.log(Object.keys(go.data.rates));
+      setCurrencyOptions(Object.keys(go.data.rates));
+      setCurrencyOptionsAndRates(Object.entries(go.data.rates));
+    };
+    test();
   }, []);
 
   return (
